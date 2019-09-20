@@ -6,10 +6,11 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Edit, AllOut } from '@material-ui/icons';
+
 const useStyles = makeStyles({
   card: {
     position:'relative',
-    minWidth: 275,
+    margin: 10,
     maxWidth: 300,
   },
   bullet: {
@@ -24,7 +25,9 @@ const useStyles = makeStyles({
     marginBottom: 12,
   },
   imageContainer:{
-    margin: 'auto 25%',
+    display: 'flex',
+    justifyContent: 'center',
+    marginBottom: 10,
   },
   userText:{
     textTransform: "capitalize",
@@ -34,7 +37,12 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     position: 'absolute',
-    right: 20,
+    right: 2,
+  },
+  image:{
+    width: '85%',
+    height: '85%',
+    objectFit: "contain",
   }
 });
 
@@ -44,25 +52,13 @@ export default function SimpleCard({ userDetails }) {
   return (
     <Card className={classes.card}>
       <CardContent>
-        {/* <Typography className={classes.title} color="textSecondary" gutterBottom>
-          Word of the Day
-        </Typography>
-        <Typography variant="h5" component="h2">
-          be
-          {bull}
-          nev
-          {bull}o{bull}
-          lent
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          adjective
-        </Typography> */}
         <div className={classes.iconsContainer}>
           <Edit/>
+          <br></br>
           <AllOut/>
         </div>
         <div className={classes.imageContainer}>
-          <img align="middle" src={picture.large}/>
+          <img align="middle" src={picture.large} className={classes.image}/>
         </div>
         <Typography variant="body2" component="p" className={classes.userText}>
           {name.first + " " + name.last}
