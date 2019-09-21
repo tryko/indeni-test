@@ -5,7 +5,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { Edit, AllOut } from '@material-ui/icons';
+import { Edit, AllOut, ThumbUp } from '@material-ui/icons';
 
 const useStyles = makeStyles({
   card: {
@@ -37,7 +37,10 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     position: 'absolute',
-    right: 2,
+    right: 1,
+  },
+  match:{
+    color: props => props.selected ? 'red':'black' 
   },
   image:{
     width: '85%',
@@ -46,16 +49,19 @@ const useStyles = makeStyles({
   }
 });
 
-export default function SimpleCard({ userDetails }) {
-  const classes = useStyles();
-  const { email, name, picture } = userDetails
+export default function SimpleCard(props) {
+  const { email, name, picture } = props.userDetails
+  const classes = useStyles(props);
+  const { addMatch } = props
   return (
     <Card className={classes.card}>
       <CardContent>
         <div className={classes.iconsContainer}>
           <Edit/>
-          <br></br>
+          <br/>
           <AllOut/>
+          <br/>
+          <ThumbUp className={ classes.match } onClick={ () => addMatch(props.userDetails) }/>
         </div>
         <div className={classes.imageContainer}>
           <img align="middle" src={picture.large} className={classes.image}/>
