@@ -1,0 +1,2 @@
+export const ADD_TO_MATCH = 'ADD_TO_MATCH';
+export const REMOVE_FROM_MATCH = 'REMOVE_FROM_MATCH';

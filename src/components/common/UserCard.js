@@ -43,6 +43,8 @@ const useStyles = makeStyles({
     color: props => props.selected ? 'red':'black' 
   },
   image:{
+    maxWidth: 149,
+    maxHeight: 149,
     width: '85%',
     height: '85%',
     objectFit: "contain",
@@ -52,17 +54,19 @@ const useStyles = makeStyles({
 export default function SimpleCard(props) {
   const { email, name, picture } = props.userDetails
   const classes = useStyles(props);
-  const { addMatch } = props
+  const { handleSelect } = props
+  const handleOnClick = () => handleSelect(props.userDetails)
+
   return (
     <Card className={classes.card}>
       <CardContent>
-        <div className={classes.iconsContainer}>
+        {name.first&& <div className={classes.iconsContainer}>
           <Edit/>
           <br/>
           <AllOut/>
           <br/>
-          <ThumbUp className={ classes.match } onClick={ () => addMatch(props.userDetails) }/>
-        </div>
+          <ThumbUp className={ classes.match } onClick={ handleOnClick }/>
+        </div>}
         <div className={classes.imageContainer}>
           <img align="middle" src={picture.large} className={classes.image}/>
         </div>
@@ -73,9 +77,6 @@ export default function SimpleCard(props) {
           { email }
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small">Learn More</Button>
-      </CardActions>
     </Card>
   );
 }

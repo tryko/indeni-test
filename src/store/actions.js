@@ -1,8 +1,10 @@
 import { createAction } from 'redux-act';
 
 import {
-    SEARCH,
+    ADD_TO_MATCH,
+    REMOVE_FROM_MATCH
 } from './types';
 
-export const searchAction = createAction(SEARCH, ( searchInput = 'tel' ) =>  searchInput);
+export const addToMatch = createAction(ADD_TO_MATCH, user  => user);
+export const removeFromMatch = createAction(REMOVE_FROM_MATCH, user  => user);
 
