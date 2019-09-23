@@ -43,7 +43,7 @@ const Home = ({
     const [showPersonDetails, setShowPersonDetails] = useState(persons[0]);
 
     useEffect(() => {
-      fetchPersonsAction();
+      if(!personsFetchStatus || !personsFetchStatus === 1) fetchPersonsAction();
     },[]);
 
     const classes = useStyles();

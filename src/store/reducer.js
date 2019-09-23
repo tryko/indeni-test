@@ -1,6 +1,6 @@
 import { createReducer } from 'redux-act';
-import { persons } from './mock';
-import defaultPersonIMG from './../images/default_avatar.jpg';
+import { persons, defaultPerson } from './mock';
+
 import { 
     ADD_TO_MATCH,
     EDIT_PERSON,
@@ -10,7 +10,8 @@ import {
     FETCH_SINGLE_PERSON,
     FETCH_SINGLE_PERSON_FAIL,
     FETCH_SINGLE_PERSON_SUCCESS,
-    REMOVE_FROM_MATCH 
+    REMOVE_FROM_MATCH,
+    UPDATE_PERSON 
 } from './types';
 
 const apiStatus = {
@@ -19,19 +20,25 @@ const apiStatus = {
     FAIL: 2
 
 }
-const defaultPerson = {
-    "gender": "male",
-    "name": {
-      "title": "",
-      "first": "",
-      "last": "",
-    },
-    "email": "",
-    "id": null,
-    "picture": {
-      "large": defaultPersonIMG,
-    }
-};
+// export const defaultPerson = {
+//     "gender": "male",
+//     "name": {
+//       "title": "",
+//       "first": "",
+//       "last": "",
+//     },
+//     address: {
+//         street: "stree",
+//         city: "city",
+//         state: "state"
+//       },
+
+//     "email": "",
+//     "id": null,
+//     "picture": {
+//       "large": defaultPersonIMG,
+//     }
+// };
 
 const initialState = {
     personsFetchStatus: null,
@@ -63,7 +70,6 @@ export default createReducer({
         }
     },
     [EDIT_PERSON]: (state, person) => {
-        console.log('s:', person)
         return {
             ...state,
             personToEdit: person
@@ -96,13 +102,23 @@ export default createReducer({
     },
     [REMOVE_FROM_MATCH]: (state, user) => {
         const newPersonsInMatch = [ ...state.personsInMatch ];
-        const newUsers = [...state.persons, user]  
+        const newPersons = [...state.persons, user]  
         const indexOfPerson = state.personsInMatch.findIndex(currUser => currUser.id === user.id);
         newPersonsInMatch[indexOfPerson] = defaultPerson;
         return {
             ...state,
-            persons: newUsers,
+            persons: newPersons,
             personsInMatch: newPersonsInMatch
+        }
+    },
+    [UPDATE_PERSON]: (state, updatedPerson) => {
+        console.log(updatedPerson)
+        const newPersons = state.persons.filter( person => !(person.id === updatedPerson.id) );
+        console.log(newPersons);
+        newPersons.push(updatedPerson);
+        return {
+            ...state,
+            persons: newPersons
         }
     }
 }

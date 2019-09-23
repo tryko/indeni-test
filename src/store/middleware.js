@@ -24,10 +24,9 @@ const fetchPersons = createLogic({
    },
 
    process({ action }) {
-      console.log(action.payload)
    //   if( action.payload === '') return [];
      return axios.get(personsURL)
-        .then(resp =>  {console.log(resp.data.results[0].persons);return resp.data.results[0].persons})
+        .then(resp => resp.data.results[0].persons)
    },
 });
 
@@ -42,10 +41,9 @@ const fetchSinglePerson = createLogic({
    },
 
    process({ action }) {
-      console.log('ff')
      if( action.payload === '') return [];
      return axios.get(personsURL)
-        .then(resp =>  {console.log(resp.data.results[0].singlePerson);return resp.data.results[0].singlePerson})
+        .then(resp => resp.data.results[0].singlePerson)
    },
 });
 

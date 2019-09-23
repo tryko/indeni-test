@@ -55,7 +55,7 @@ const useStyles = makeStyles({
 export default function SimpleCard(props) {
   const { email, name, picture, address, birthDate } = props.userDetails
   const classes = useStyles(props);
-  const { handleSelect,editPerson, onShowPersonDetails, isInModal } = props
+  const { handleSelect,editPerson, onShowPersonDetails, isInModal, inMatch } = props
   
   const handleShowPersonDetails = () => onShowPersonDetails(props.userDetails);
   const handleAddToMatch = () => handleSelect(props.userDetails);
@@ -65,9 +65,9 @@ export default function SimpleCard(props) {
     <Card className={classes.card}>
       <CardContent>
         { !isInModal&&name.first&& <div className={classes.iconsContainer}>
-          <Link to="/edit">
+          {!inMatch&&<Link to="/edit">
             <Edit onClick={handleEditPerson}/>
-          </Link>
+          </Link>}
           <br/>
           <AllOut onClick={handleShowPersonDetails}/>
           <br/>

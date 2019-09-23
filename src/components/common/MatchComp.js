@@ -31,15 +31,16 @@ const useStyles = makeStyles({
 const MatchComp = (props) => {
     const classes = useStyles(props);
     const { personsInMatch, removeFromMatch, } = props
-    console.log(personsInMatch)
 
     return (
     <div className={classes.matchWrapper}>
         {personsInMatch.map( (user,i) => <UserCard             
-            key={"selectedPerson-" + i}
-            selected={true}
-            handleSelect={removeFromMatch}
-            userDetails={user}/>)}
+                key={"selectedPerson-" + i}
+                selected={true}
+                handleSelect={removeFromMatch}
+                userDetails={user}
+                inMatch={true}
+            />)}
         
         <div className={classes.matchDetails}></div>
     </div>

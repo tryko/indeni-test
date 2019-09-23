@@ -1,3 +1,25 @@
+import defaultPersonIMG from './../images/default_avatar.jpg';
+
+export const defaultPerson = {
+  "gender": "male",
+  "name": {
+    "title": "",
+    "first": "",
+    "last": "",
+  },
+  "address": {
+      "street": "stree",
+      "city": "city",
+      "state": "state"
+    },
+
+  "email": "",
+  "id": null,
+  "picture": {
+    "large": defaultPersonIMG,
+  }
+};
+
 export const persons = {
   results: [
     {
