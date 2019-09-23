@@ -3,6 +3,7 @@ import { persons } from './mock';
 import defaultPersonIMG from './../images/default_avatar.jpg';
 import { 
     ADD_TO_MATCH,
+    EDIT_PERSON,
     FETCH_PERSONS,
     FETCH_PERSONS_FAIL,
     FETCH_PERSONS_SUCCESS,
@@ -35,6 +36,7 @@ const defaultPerson = {
 const initialState = {
     personsFetchStatus: null,
     personsInMatch:[ defaultPerson, defaultPerson], 
+    personToEdit: null,
     persons: persons.results,
 };
 
@@ -58,6 +60,13 @@ export default createReducer({
             ...state,
             persons: newUsers,
             personsInMatch: newPersonsInMatch
+        }
+    },
+    [EDIT_PERSON]: (state, person) => {
+        console.log('s:', person)
+        return {
+            ...state,
+            personToEdit: person
         }
     },
     [FETCH_PERSONS]: (state) => {
@@ -102,11 +111,13 @@ export default createReducer({
 const getUsers = state => state.persons;
 const getPersonsInMatch = state => state.personsInMatch;
 const getPersonsFetchStatus = state => state.personsFetchStatus;
+const getPersonToEdit = state => state.personToEdit;
 
 export const selectors = {
-    getUsers,
+    getPersonsFetchStatus,
     getPersonsInMatch,
-    getPersonsFetchStatus
+    getPersonToEdit,
+    getUsers,
 };
 
 

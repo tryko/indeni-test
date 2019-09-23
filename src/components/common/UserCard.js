@@ -1,9 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
+import { Link } from 'react-router-dom';
+
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Edit, AllOut, ThumbUp } from '@material-ui/icons';
 
@@ -55,15 +55,19 @@ const useStyles = makeStyles({
 export default function SimpleCard(props) {
   const { email, name, picture, address, birthDate } = props.userDetails
   const classes = useStyles(props);
-  const { handleSelect, onShowPersonDetails, isInModal } = props
+  const { handleSelect,editPerson, onShowPersonDetails, isInModal } = props
+  
   const handleShowPersonDetails = () => onShowPersonDetails(props.userDetails);
-  const handleAddToMatch = () => handleSelect(props.userDetails)
+  const handleAddToMatch = () => handleSelect(props.userDetails);
+  const handleEditPerson = () => editPerson(props.userDetails);
 
   return (
     <Card className={classes.card}>
       <CardContent>
         { !isInModal&&name.first&& <div className={classes.iconsContainer}>
-          <Edit/>
+          <Link to="/edit">
+            <Edit onClick={handleEditPerson}/>
+          </Link>
           <br/>
           <AllOut onClick={handleShowPersonDetails}/>
           <br/>

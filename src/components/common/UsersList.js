@@ -3,6 +3,7 @@ import UserCard from '../common/UserCard'
 
 const UsersList = ({  
   addToMatch,
+  editPerson,
   personsFetchStatus,
   onShowPersonDetails,
   persons,
@@ -17,6 +18,7 @@ const UsersList = ({
                 selected={false}
                 handleSelect={addToMatch}
                 userDetails={ user }
+                editPerson={editPerson}
                 onShowPersonDetails={onShowPersonDetails}
             />)}  
             </div>)}
