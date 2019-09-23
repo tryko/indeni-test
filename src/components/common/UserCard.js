@@ -31,6 +31,7 @@ const useStyles = makeStyles({
   },
   userText:{
     textTransform: "capitalize",
+    height:30,
   },
   iconsContainer:{
     position: "absolute",
@@ -43,8 +44,8 @@ const useStyles = makeStyles({
     color: props => props.selected ? 'red':'black' 
   },
   image:{
-    maxWidth: 149,
-    maxHeight: 149,
+    maxWidth: (props) => props.isInModal ? 300: 149,
+    maxHeight: (props) => props.isInModal ? 300: 149,
     width: '85%',
     height: '85%',
     objectFit: "contain",
@@ -52,30 +53,42 @@ const useStyles = makeStyles({
 });
 
 export default function SimpleCard(props) {
-  const { email, name, picture } = props.userDetails
+  const { email, name, picture, address, birthDate } = props.userDetails
   const classes = useStyles(props);
-  const { handleSelect } = props
-  const handleOnClick = () => handleSelect(props.userDetails)
+  const { handleSelect, onShowPersonDetails, isInModal } = props
+  const handleShowPersonDetails = () => onShowPersonDetails(props.userDetails);
+  const handleAddToMatch = () => handleSelect(props.userDetails)
 
   return (
     <Card className={classes.card}>
       <CardContent>
-        {name.first&& <div className={classes.iconsContainer}>
+        { !isInModal&&name.first&& <div className={classes.iconsContainer}>
           <Edit/>
           <br/>
-          <AllOut/>
+          <AllOut onClick={handleShowPersonDetails}/>
           <br/>
-          <ThumbUp className={ classes.match } onClick={ handleOnClick }/>
+          <ThumbUp className={ classes.match } onClick={ handleAddToMatch }/>
         </div>}
         <div className={classes.imageContainer}>
           <img align="middle" src={picture.large} className={classes.image}/>
         </div>
+
         <Typography variant="body2" component="p" className={classes.userText}>
-          {name.first + " " + name.last}
+          {isInModal&& <b> Full Name: </b>} {name.first + " " + name.last}
         </Typography>
-        <Typography variant="body2" component="p">
-          { email }
+        
+        {isInModal&&<Typography variant="body2" component="p" className={classes.userText}>
+          <b> Birth Date: </b> { birthDate }
+        </Typography>}
+
+        <Typography variant="body2" component="p" className={classes.userText}>
+          {isInModal&& <b> Email: </b>}{ email }
         </Typography>
+
+          {isInModal&& <Typography variant="body2" component="p" className={classes.userText}>
+          <b> Address: </b>{ `${address.city} ${address.state} ${address.street}` }
+        </Typography>}
+
       </CardContent>
     </Card>
   );

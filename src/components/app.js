@@ -8,7 +8,6 @@ const App = ({ classes }) => (
     <div className="">
     <Router>
         <Route exact path="/" component={Home}/>
-        {/* <Route path="/favorites" component={Favorites}/> */}
     </Router>
     </div>
 );

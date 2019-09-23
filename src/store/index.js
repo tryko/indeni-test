@@ -1,13 +1,13 @@
 import { createStore, applyMiddleware } from 'redux';
-// import { createLogicMiddleware } from 'redux-logic';
+import { createLogicMiddleware } from 'redux-logic';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import appReducer from './reducer'
-// import middleware from './middleware'
+import middleware from './middleware'
 export const middlewares = [];
-// export const logicMiddlewares = createLogicMiddleware(middleware);
+export const logicMiddlewares = createLogicMiddleware(middleware);
 
-// middlewares.push(logicMiddlewares);
+middlewares.push(logicMiddlewares);
 
 export const store = createStore(
     appReducer
