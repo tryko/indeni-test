@@ -20,25 +20,6 @@ const apiStatus = {
     FAIL: 2
 
 }
-// export const defaultPerson = {
-//     "gender": "male",
-//     "name": {
-//       "title": "",
-//       "first": "",
-//       "last": "",
-//     },
-//     address: {
-//         street: "stree",
-//         city: "city",
-//         state: "state"
-//       },
-
-//     "email": "",
-//     "id": null,
-//     "picture": {
-//       "large": defaultPersonIMG,
-//     }
-// };
 
 const initialState = {
     personsFetchStatus: null,
@@ -112,9 +93,7 @@ export default createReducer({
         }
     },
     [UPDATE_PERSON]: (state, updatedPerson) => {
-        console.log(updatedPerson)
         const newPersons = state.persons.filter( person => !(person.id === updatedPerson.id) );
-        console.log(newPersons);
         newPersons.push(updatedPerson);
         return {
             ...state,

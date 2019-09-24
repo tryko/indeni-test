@@ -1,8 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import { Link } from 'react-router-dom';
 
+import { Link } from 'react-router-dom';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { Edit, AllOut, ThumbUp } from '@material-ui/icons';
@@ -72,6 +72,8 @@ export default function SimpleCard(props) {
           <AllOut onClick={handleShowPersonDetails}/>
           <br/>
           <ThumbUp className={ classes.match } onClick={ handleAddToMatch }/>
+          <br/>
+          <div >0.0</div>
         </div>}
         <div className={classes.imageContainer}>
           <img align="middle" src={picture.large} className={classes.image}/>
@@ -82,7 +84,7 @@ export default function SimpleCard(props) {
         </Typography>
         
         {isInModal&&<Typography variant="body2" component="p" className={classes.userText}>
-          <b> Birth Date: </b> { birthDate }
+          <b> Birth Date: </b> { birthDate.slice(0,10) }
         </Typography>}
 
         <Typography variant="body2" component="p" className={classes.userText}>
@@ -92,7 +94,7 @@ export default function SimpleCard(props) {
           {isInModal&& <Typography variant="body2" component="p" className={classes.userText}>
           <b> Address: </b>{ `${address.city} ${address.state} ${address.street}` }
         </Typography>}
-
+        
       </CardContent>
     </Card>
   );

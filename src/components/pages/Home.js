@@ -1,11 +1,13 @@
 import React, { memo, useEffect, useState }  from 'react';
 import { compose  } from 'redux';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { selectors } from '../../store/reducer';
 import MatchComp from './../common/MatchComp';
-import UsersList from './../common/UsersList';
+import PersonsList from './../common/PersonsList';
 import Modal from '@material-ui/core/Modal';
 import UserCard from '../common/UserCard'
 import { 
@@ -65,23 +67,21 @@ const Home = ({
       const isSingle = true;
       fetchSinglePersonAction(isSingle);
     }
-
-    // const addNewPerson = () =>{
-
-    // }
     
-
     return (
       <main > 
           <MatchComp 
             personsInMatch={ personsInMatch } 
             removeFromMatch= { removeFromMatch }
+            onShowPersonDetails={onShowPersonDetails} 
           />
           <div className="button-wrapper">
-            <Button onClick={ handleOpen }> New </Button>
+            <Link to="/edit">
+              <Button> New </Button>
+            </Link>
             <Button onClick={ reFetch }> Random </Button>
           </div>
-          <UsersList 
+          <PersonsList 
             personsFetchStatus={personsFetchStatus} 
             persons={persons} 
             addToMatch={addToMatch}

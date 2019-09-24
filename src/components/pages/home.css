@@ -1,19 +1,11 @@
-.users-list{
-    /* display: flex;
-    flex-wrap: wrap; */
-
-    max-width: 1200px;
-    margin: 30px auto;
-    padding: 0 10px;
-    width: 100%; 
-    display: grid;
-    /* Define Auto Row size */
-    grid-auto-rows: auto; 
-    /*Define our columns */
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
-    grid-gap: 1em;
+*{
+    font: 400 15.3333px Arial;
 }
 
 .button-wrapper{
     text-align: center;
+}
+
+a{
+    text-decoration: none;
 }
